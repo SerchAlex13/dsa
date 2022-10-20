@@ -58,4 +58,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    //Relacionar al usuario con sus prendas
+    public function prendas()
+    {
+        return $this->hasMany(Prenda::class);
+    }
 }

@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('prendas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('nombre');
             $table->string('tipo');
-            $table->string('descripcion');
+            $table->text('descripcion');
             $table->string('color');
             $table->string('talla');
             $table->string('tela');
+            $table->float('precio')->unsigned()->default(0);
             $table->integer('inventario')->unsigned()->default(0);
         });
     }

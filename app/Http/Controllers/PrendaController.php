@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Prenda;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PrendaController extends Controller
 {
@@ -15,6 +16,8 @@ class PrendaController extends Controller
     public function index()
     {
         $prendas = Prenda::all();
+        //$prendas = Prenda::where('user_id', Auth::id())->get();//Para mostrar prendas sólo de el usuario logeado
+        //$eventos = Auth::user()->eventos;//Para mostrar prendas sólo de el usuario logeado
         return view('prendas/prendaIndex', compact('prendas'));
     }
 
@@ -44,9 +47,11 @@ class PrendaController extends Controller
             'color' => 'required|max:255',
             'talla' => 'required|max:255',
             'tela' => 'required|max:255',
+            'precio' => 'required|min:0',
             'inventario' => 'integer|min:0'
         ]);
 
+        $request->merge(['user_id' => Auth::id()]);
         Prenda::create($request->all());
 
         return redirect('/prenda');
@@ -91,6 +96,7 @@ class PrendaController extends Controller
             'color' => 'required|max:255',
             'talla' => 'required|max:255',
             'tela' => 'required|max:255',
+            'precio' => 'required|min:0',
             'inventario' => 'integer|min:0'
         ]);
 
