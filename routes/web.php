@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PrendaController;
+use App\Http\Controllers\CompraController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,7 @@ Route::get('/', function () {
 // Route::get('/equipo/{id}', [EquipoController::class, 'show']);
 
 Route::resource('prenda', PrendaController::class);
+Route::resource('compra', CompraController::class);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
