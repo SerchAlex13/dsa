@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Prenda::class);
     }
+
+    public function carritos()
+    {
+        return $this->hasMany(Carrito::class);
+    }
 }

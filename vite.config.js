@@ -8,7 +8,7 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/css/bootstrap.css',
-                'resources/js/bootstrapjs.js'
+                'resources/js/bootstrapjs.js',
             ],
             refresh: [
                 ...refreshPaths,

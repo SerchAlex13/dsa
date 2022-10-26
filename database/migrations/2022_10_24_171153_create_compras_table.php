@@ -15,9 +15,6 @@ return new class extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('prenda_id')->constrained()->onDelete('cascade');
-            $table->integer('cantidad')->unsigned();
             $table->float('subtotal')->unsigned();
             $table->float('iva')->unsigned();
             $table->float('total')->unsigned();

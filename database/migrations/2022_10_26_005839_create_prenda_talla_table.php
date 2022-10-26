@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clientes', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->string('correo');
+        Schema::create('prenda_talla', function (Blueprint $table) {
+            //$table->id();
+            $table->foreignId('prenda_id')->constrained()->onDelete('cascade');
+            $table->foreignId('talla_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('prenda_talla');
     }
 };

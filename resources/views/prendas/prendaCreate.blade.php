@@ -35,8 +35,12 @@
                         <input type="text" class="form-control" name="color" id="color">
                     </div>
                     <div class="col-md-4">
-                        <label for="talla" class="form-label">Talla</label>
-                        <input type="text" class="form-control" name="talla" id="talla">
+                        <label class="form-label">Tallas disponibles</label>
+                        <select name="tallas_id[]" class="form-control selectpicker" multiple data-live-search="true">
+                            @foreach ($tallas as $talla)
+                                <option value="{{ $talla->id }}">{{ $talla->nombre }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-4">
                         <label for="tela" class="form-label">Tela</label>
@@ -54,7 +58,7 @@
                         <button type="submit" class="btn btn-dark">Guardar</button>
                     </div>
                     <div class="col-md-2 p-3">
-                        <a href="/prenda" class="btn btn-outline-dark">Cancelar</a>
+                        <a href="/prenda" class="btn btn-info">Cancelar</a>
                     </div>
                 </form>
             </div>

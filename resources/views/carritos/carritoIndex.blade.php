@@ -1,7 +1,7 @@
-<x-plantilla titulo="Listado de Compras">
+<x-plantilla titulo="Listado de Carritos">
 
     <div class="container p-3">
-        <a href="/compra/create" class="btn btn-primary">Crear Nueva Compra</a>
+        <a href="/carrito/create" class="btn btn-primary">Crear Nuevo Carrito</a>
     </div>
 
     <div class="container p-3">
@@ -9,29 +9,23 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Subtotal</th>
-                    <th>IVA</th>
-                    <th>Total</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
+                    <th>ID de prenda</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                @foreach ($compras as $compra)
+                @foreach ($carritos as $carrito)
                     <tr>
                         <td>
-                            <a class="nav-link link-info" href="/compra/{{ $compra->id }}">
-                                {{ $compra->id }}
+                            <a class="nav-link link-info" href="/carrito/{{ $carrito->id }}">
+                                {{ $carrito->id }}
                             </a>
                         </td>
-                        <td>{{ $compra->subtotal }}</td>
-                        <td>{{ $compra->iva }}</td>
-                        <td>{{ $compra->total }}</td>
+                        <td>{{ $carrito->prenda_id }}</td>
                         <td>
-                            <a href="/compra/{{ $compra->id }}/edit" class="btn btn-outline-dark">Editar</a>
+                            <a href="/carrito/{{ $carrito->id }}/edit" class="btn btn-outline-dark">Editar</a>
                         </td>
                         <td>
-                            <form action="/compra/{{ $compra->id }}" method="POST">
+                            <form action="/carrito/{{ $carrito->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" value="Borrar" class="btn btn-outline-danger">

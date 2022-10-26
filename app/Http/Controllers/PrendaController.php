@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prenda;
+use App\Models\Talla;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PrendaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +33,8 @@ class PrendaController extends Controller
      */
     public function create()
     {
-        return view('prendas/prendaCreate');
+        $tallas = Talla::all();
+        return view('prendas/prendaCreate', compact('tallas'));
     }
 
     /**
@@ -45,14 +51,15 @@ class PrendaController extends Controller
             'tipo' => 'required|max:255',
             'descripcion' => 'required|max:255',
             'color' => 'required|max:255',
-            'talla' => 'required|max:255',
             'tela' => 'required|max:255',
             'precio' => 'required|min:0',
             'inventario' => 'integer|min:0'
         ]);
 
         $request->merge(['user_id' => Auth::id()]);
-        Prenda::create($request->all());
+        $prenda = Prenda::create($request->all());
+
+        $prenda->tallas()->attach($request->tallas_id);
 
         return redirect('/prenda');
     }
@@ -94,7 +101,6 @@ class PrendaController extends Controller
             'tipo' => 'required|max:255',
             'descripcion' => 'required|max:255',
             'color' => 'required|max:255',
-            'talla' => 'required|max:255',
             'tela' => 'required|max:255',
             'precio' => 'required|min:0',
             'inventario' => 'integer|min:0'

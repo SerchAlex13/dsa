@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('tipo');
             $table->text('descripcion');
             $table->string('color');
-            $table->string('talla');
             $table->string('tela');
             $table->float('precio')->unsigned()->default(0);
             $table->integer('inventario')->unsigned()->default(0);

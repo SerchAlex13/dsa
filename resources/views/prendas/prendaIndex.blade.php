@@ -1,8 +1,8 @@
 <x-plantilla titulo="Listado de Prendas">
 
-    <div class="container p-3">
+    {{-- <div class="container p-3">
         <h2>{{ \Auth::user()->name }} - {{ \Auth::user()->email }}</h2>
-    </div>
+    </div> --}}
 
     <div class="container p-3">
         <a href="/prenda/create" class="btn btn-primary">Crear Nueva Prenda</a>
@@ -18,7 +18,6 @@
                     <th>Tipo</th>
                     <th>Descripción</th>
                     <th>Color</th>
-                    <th>Talla</th>
                     <th>Tela</th>
                     <th>Precio</th>
                     <th>Inventario</th>
@@ -39,7 +38,6 @@
                         <td>{{ $prenda->tipo }}</td>
                         <td>{{ $prenda->descripcion }}</td>
                         <td>{{ $prenda->color }}</td>
-                        <td>{{ $prenda->talla }}</td>
                         <td>{{ $prenda->tela }}</td>
                         <td>{{ $prenda->precio }}</td>
                         <td>{{ $prenda->inventario }}</td>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Prenda extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombre', 'user_id', 'tipo', 'descripcion', 'color', 'talla', 'tela', 'precio', 'inventario'];
+    protected $fillable = ['user_id', 'nombre', 'tipo', 'descripcion', 'color', 'tela', 'precio', 'inventario'];
     //protected $guarded = ['id'];
     public $timestamps = false;
 
@@ -16,5 +16,20 @@ class Prenda extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function compras()
+    {
+        return $this->belongsToMany(Compra::class);
+    }
+
+    public function carritos()
+    {
+        return $this->hasMany(Carrito::class);
+    }
+
+    public function tallas()
+    {
+        return $this->belongsToMany(Talla::class);
     }
 }

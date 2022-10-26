@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Compra;
+use App\Models\Talla;
 use Illuminate\Http\Request;
 
-class CompraController extends Controller
+class TallaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class CompraController extends Controller
      */
     public function index()
     {
-        $compras = Compra::all();
+        $tallas = Talla::all();
 
-        return view('compras/compraIndex', compact('compras'));
+        return view('tallas/tallaIndex', compact('tallas'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CompraController extends Controller
      */
     public function create()
     {
-        return view('compras/compraCreate');
+        return view('tallas/tallaCreate');
     }
 
     /**
@@ -39,70 +39,66 @@ class CompraController extends Controller
     {
         //Validación
         $request->validate([
-            'subtotal' => 'required',
-            'iva' => 'required',
-            'total' => 'required',
+            'nombre' => 'required|max:255',
         ]);
 
-        Compra::create($request->all());
+        Talla::create($request->all());
 
-        return redirect('/compra');
+        return redirect('/talla');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Compra  $compra
+     * @param  \App\Models\Talla  $talla
      * @return \Illuminate\Http\Response
      */
-    public function show(Compra $compra)
+    public function show(Talla $talla)
     {
-        return view('compras/compraShow', compact('compra'));
+        return view('tallas/tallaShow', compact('talla'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Compra  $compra
+     * @param  \App\Models\Talla  $talla
      * @return \Illuminate\Http\Response
      */
-    public function edit(Compra $compra)
+    public function edit(Talla $talla)
     {
-        return view('compras/compraEdit', compact('compra'));
+        return view('tallas/tallaEdit', compact('talla'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Compra  $compra
+     * @param  \App\Models\Talla  $talla
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Compra $compra)
+    public function update(Request $request, Talla $talla)
     {
         //Validación
         $request->validate([
-            'subtotal' => 'required',
-            'iva' => 'required',
-            'total' => 'required',
+            'nombre' => 'required|max:255',
         ]);
 
         //Actualizar
-        Compra::where('id', $compra->id)->update($request->except('_token', '_method'));
+        Talla::where('id', $talla->id)->update($request->except('_token', '_method'));
 
-        return redirect('/compra');
+        return redirect('/talla');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Compra  $compra
+     * @param  \App\Models\Talla  $talla
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Compra $compra)
+    public function destroy(Talla $talla)
     {
-        $compra->delete();
+        $talla->delete();
 
-        return redirect('/compra');
+        return redirect('/talla');
     }
 }

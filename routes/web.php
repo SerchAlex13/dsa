@@ -25,6 +25,9 @@ Route::get('/', function () {
 
 Route::resource('prenda', PrendaController::class);
 Route::resource('compra', CompraController::class);
+Route::resource('carrito', CarritoController::class);
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
