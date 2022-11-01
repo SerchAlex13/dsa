@@ -9,6 +9,15 @@
     </div>
 
     <div class="container p-3">
+        <h3>Colores</h3>
+        <ul>
+            @foreach ($prenda->colors as $color)
+                <li>{{ $color->nombre }}</li>
+            @endforeach
+        </ul>
+    </div>
+
+    <div class="container p-3">
         <h3>Tallas disponibles</h3>
         <ul>
             @foreach ($prenda->tallas as $talla)

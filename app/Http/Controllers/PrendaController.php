@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prenda;
+use App\Models\Color;
 use App\Models\Talla;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,8 +34,9 @@ class PrendaController extends Controller
      */
     public function create()
     {
+        $colors = Color::all();
         $tallas = Talla::all();
-        return view('prendas/prendaCreate', compact('tallas'));
+        return view('prendas/prendaCreate', compact('colors', 'tallas'));
     }
 
     /**
@@ -50,7 +52,6 @@ class PrendaController extends Controller
             'nombre' => 'required|max:255',
             'tipo' => 'required|max:255',
             'descripcion' => 'required|max:255',
-            'color' => 'required|max:255',
             'tela' => 'required|max:255',
             'precio' => 'required|min:0',
             'inventario' => 'integer|min:0'
@@ -59,6 +60,7 @@ class PrendaController extends Controller
         $request->merge(['user_id' => Auth::id()]);
         $prenda = Prenda::create($request->all());
 
+        $prenda->colors()->attach($request->colors_id);
         $prenda->tallas()->attach($request->tallas_id);
 
         return redirect('/prenda');
@@ -83,7 +85,9 @@ class PrendaController extends Controller
      */
     public function edit(Prenda $prenda)
     {
-        return view('prendas/prendaEdit', compact('prenda'));
+        $colors = Color::all();
+        $tallas = Talla::all();
+        return view('prendas/prendaEdit', compact('prenda', 'colors', 'tallas'));
     }
 
     /**
@@ -100,7 +104,6 @@ class PrendaController extends Controller
             'nombre' => 'required|max:255',
             'tipo' => 'required|max:255',
             'descripcion' => 'required|max:255',
-            'color' => 'required|max:255',
             'tela' => 'required|max:255',
             'precio' => 'required|min:0',
             'inventario' => 'integer|min:0'
@@ -121,9 +124,11 @@ class PrendaController extends Controller
 
         //Torneo::where('id', '!=', $torneo->id)->update($request->except('_token', '_method'));
 
-        Prenda::where('id', $prenda->id)->update($request->except('_token', '_method'));
-
-        return redirect('/prenda');
+        Prenda::where('id', $prenda->id)->update($request->except('_token', '_method', 'colors_id', 'tallas_id'));
+        $prenda->colors()->sync($request->colors_id);
+        $prenda->tallas()->sync($request->tallas_id);
+        //$prenda->tallas()->detach();
+        return redirect()->route('prenda.show', $prenda->id);
     }
 
     /**
@@ -134,6 +139,7 @@ class PrendaController extends Controller
      */
     public function destroy(Prenda $prenda)
     {
+        //$prenda->tallas()->detach();
         $prenda->delete();
 
         return redirect('/prenda');

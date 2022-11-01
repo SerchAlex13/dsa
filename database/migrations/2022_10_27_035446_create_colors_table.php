@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('prendas', function (Blueprint $table) {
+        Schema::create('colors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('nombre');
-            $table->string('tipo');
-            $table->text('descripcion');
-            $table->string('tela');
-            $table->float('precio')->unsigned()->default(0);
-            $table->integer('inventario')->unsigned()->default(0);
         });
     }
 
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prendas');
+        Schema::dropIfExists('colors');
     }
 };

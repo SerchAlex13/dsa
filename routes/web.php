@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\PrendaController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\TallaController;
+use App\Http\Controllers\ColorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +29,8 @@ Route::get('/', function () {
 Route::resource('prenda', PrendaController::class);
 Route::resource('compra', CompraController::class);
 Route::resource('carrito', CarritoController::class);
+Route::resource('talla', TallaController::class);
+Route::resource('color', ColorController::class);
 
 
 Route::middleware([

@@ -31,8 +31,12 @@
                         <textarea class="form-control" name="descripcion" id="descripcion" rows="5" cols="50"></textarea>
                     </div>
                     <div class="col-md-4">
-                        <label for="color" class="form-label">Color</label>
-                        <input type="text" class="form-control" name="color" id="color">
+                        <label class="form-label">Colores</label>
+                        <select name="colors_id[]" class="form-control selectpicker" multiple data-live-search="true">
+                            @foreach ($colors as $color)
+                                <option value="{{ $color->id }}">{{ $color->nombre }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Tallas disponibles</label>

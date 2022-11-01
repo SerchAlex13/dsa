@@ -31,17 +31,24 @@
                         <!-- <input type="text" class="form-control" name="descripcion" id="descripcion"> -->
                         <textarea class="form-control" name="descripcion" id="descripcion" rows="5" cols="50">{{ $prenda->descripcion }}</textarea>
                     </div>
-                    <div class="col-4">
-                        <label for="color" class="form-label">Color</label>
-                        <input type="text" class="form-control" name="color" id="color" value="{{ $prenda->color }}">
+                    <div class="col-md-4">
+                        <label class="form-label">Colores</label>
+                        <select name="colors_id[]" class="form-control selectpicker" multiple data-live-search="true">
+                            @foreach ($colors as $color)
+                                <option value="{{ $color->id }}" {{ array_search($color->id, $prenda->colors->pluck('id')->toArray()) !== false ? 'selected' : '' }}>
+                                    {{ $color->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Tallas disponibles</label>
                         <select name="tallas_id[]" class="form-control selectpicker" multiple data-live-search="true">
-                            <option value="1">Opción 1</option>
-                            <option value="2">Opción 2</option>
-                            <option value="3">Opción 3</option>
-                            <option value="4">Opción 4</option>
+                            @foreach ($tallas as $talla)
+                                <option value="{{ $talla->id }}" {{ array_search($talla->id, $prenda->tallas->pluck('id')->toArray()) !== false ? 'selected' : '' }}>
+                                    {{ $talla->nombre }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-md-4">
