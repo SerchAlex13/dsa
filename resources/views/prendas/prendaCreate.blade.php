@@ -22,8 +22,26 @@
                         <input type="text" class="form-control" name="nombre" id="nombre">
                     </div>
                     <div class="col-md-6">
+                        <label for="codigo" class="form-label">Código</label>
+                        <input type="text" class="form-control" name="codigo" id="codigo">
+                    </div>
+                    <div class="col-md-6">
                         <label for="tipo" class="form-label">Tipo de prenda</label>
                         <input type="text" class="form-control" name="tipo" id="tipo">
+                    </div>
+                    <div class="col-md-6">
+                        <img id="imagenSeleccionada" style="max-height: 300px;">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Subir imagen</label>
+                        <div>
+                            <label for="">
+                                <div>
+                                    <p>Seleccione la imagen</p>
+                                </div>
+                                <input name="imagen" id="imagen" type="file">
+                            </label>
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <label for="descripcion" class="form-label">Descripción</label>
@@ -64,9 +82,46 @@
                     <div class="col-md-2 p-3">
                         <a href="/prenda" class="btn btn-info">Cancelar</a>
                     </div>
+
+{{-- 
+
+                    <input type="file" id="myfile" style="display:none;" onchange="js_changed_file();"  />
+
+                    <a href="#" onclick="$('#myfile').trigger('click');return false;">
+                    <b class='fa fa-folder fa-lg'></b> Seleccionar archivo
+                    </a>
+
+                    <p id="display_filename" style="display:none; word-break: break-all;margin:0.3em;padding:0.5em 1em;"></p>
+
+                     --}}
+
+                    <div class="container mt-5">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="announce"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form method="post" action="#" enctype="multipart/form-data">
+                                    <div class="card" style="width: 25rem;">
+                                        <img class="card-img-top" src="https://via.placeholder.com/150">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="image">Upload image</label>
+                                                <input type="file" class="form-control-file mt-2" name="image" id="image">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div>    
     </div>
+
 
 </x-plantilla>

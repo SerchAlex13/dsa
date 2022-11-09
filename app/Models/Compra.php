@@ -9,9 +9,4 @@ class Compra extends Model
 {
     use HasFactory;
     protected $fillable = ['subtotal', 'iva', 'total'];
-    
-    public function prendas()
-    {
-        return $this->belongsToMany(Prenda::class);
-    }
 }

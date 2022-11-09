@@ -59,12 +59,6 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    //Relacionar al usuario con sus prendas
-    public function prendas()
-    {
-        return $this->hasMany(Prenda::class);
-    }
-
     public function carritos()
     {
         return $this->hasMany(Carrito::class);

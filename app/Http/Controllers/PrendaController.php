@@ -50,14 +50,16 @@ class PrendaController extends Controller
         //Validación
         $request->validate([
             'nombre' => 'required|max:255',
+            'codigo' => 'required|max:255',
             'tipo' => 'required|max:255',
+            'imagen' => 'required|max:255',
             'descripcion' => 'required|max:255',
             'tela' => 'required|max:255',
             'precio' => 'required|min:0',
             'inventario' => 'integer|min:0'
         ]);
 
-        $request->merge(['user_id' => Auth::id()]);
+        //$request->merge(['user_id' => Auth::id()]);
         $prenda = Prenda::create($request->all());
 
         $prenda->colors()->attach($request->colors_id);
@@ -102,7 +104,9 @@ class PrendaController extends Controller
         //Validar
         $request->validate([
             'nombre' => 'required|max:255',
+            'codigo' => 'required|max:255',
             'tipo' => 'required|max:255',
+            'imagen' => 'required|max:255',
             'descripcion' => 'required|max:255',
             'tela' => 'required|max:255',
             'precio' => 'required|min:0',
@@ -128,7 +132,8 @@ class PrendaController extends Controller
         $prenda->colors()->sync($request->colors_id);
         $prenda->tallas()->sync($request->tallas_id);
         //$prenda->tallas()->detach();
-        return redirect()->route('prenda.show', $prenda->id);
+        //return redirect()->route('prenda.show', $prenda->id);
+        return redirect()->route('prenda.index');
     }
 
     /**

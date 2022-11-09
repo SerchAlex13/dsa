@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/index', function () {
+    return view('index');
+});
+
 // Route::get('/equipo', [EquipoController::class, 'index']);
 // Route::get('/equipo/create', [EquipoController::class, 'create']);
 // Route::get('/equipo/{id}', [EquipoController::class, 'show']);

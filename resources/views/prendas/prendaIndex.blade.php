@@ -13,11 +13,11 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Usuario</th>
                     <th>Nombre</th>
+                    <th>Código</th>
                     <th>Tipo</th>
+                    <th>Imagen</th>
                     <th>Descripción</th>
-                    <th>Color</th>
                     <th>Tela</th>
                     <th>Precio</th>
                     <th>Inventario</th>
@@ -29,15 +29,17 @@
                 @foreach ($prendas as $prenda)
                     <tr>
                         <td>{{ $prenda->id }}</td>
-                        <td>{{ $prenda->user->name }}</td>
                         <td>
                             <a class="nav-link link-info" href="/prenda/{{ $prenda->id }}">
                                 {{ $prenda->nombre }}
                             </a>
                         </td>
+                        <td>{{ $prenda->codigo }}</td>
                         <td>{{ $prenda->tipo }}</td>
+                        <td>
+                            <img src="/imagen/{{ $prenda->imagen }}" alt="" width="60%">
+                        </td>
                         <td>{{ $prenda->descripcion }}</td>
-                        <td>{{ $prenda->color }}</td>
                         <td>{{ $prenda->tela }}</td>
                         <td>{{ $prenda->precio }}</td>
                         <td>{{ $prenda->inventario }}</td>
