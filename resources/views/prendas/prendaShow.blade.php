@@ -7,7 +7,7 @@
     <div class="container p-3">
         <h2>{{ $prenda->nombre }}</h2>
     </div>
-{{-- 
+
     <div class="container p-3">
         <h3>Colores</h3>
         <ul>
@@ -28,6 +28,6 @@
 
     <div class="container p-3">
         <a href="/compra/create" class="btn btn-info">Agregar al carrito</a>
-    </div> --}}
+    </div>
 
 </x-plantilla>

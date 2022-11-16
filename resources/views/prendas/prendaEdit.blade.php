@@ -35,7 +35,6 @@
                         <!-- <input type="text" class="form-control" name="descripcion" id="descripcion"> -->
                         <textarea class="form-control" name="descripcion" id="descripcion" rows="5" cols="50">{{ $prenda->descripcion }}</textarea>
                     </div>
-{{-- 
                     <div class="col-md-4">
                         <label class="form-label">Colores</label>
                         <select name="colors_id[]" class="form-control selectpicker" multiple data-live-search="true">
@@ -56,7 +55,6 @@
                             @endforeach
                         </select>
                     </div>
-                     --}}
                     <div class="col-md-4">
                         <label for="tela" class="form-label">Tela</label>
                         <input type="text" class="form-control" name="tela" id="tela" value="{{ $prenda->tela }}">
