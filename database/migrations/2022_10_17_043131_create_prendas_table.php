@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('codigo');
             $table->string('tipo');
-            $table->string('imagen');
             $table->text('descripcion');
             $table->string('tela');
             $table->float('precio')->unsigned()->default(0);

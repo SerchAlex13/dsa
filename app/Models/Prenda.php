@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Prenda extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombre', 'codigo', 'tipo', 'imagen', 'descripcion', 'tela', 'precio', 'inventario'];
+    protected $fillable = ['nombre', 'codigo', 'tipo', 'descripcion', 'tela', 'precio', 'inventario'];
     //protected $guarded = ['id'];
     public $timestamps = false;
 
