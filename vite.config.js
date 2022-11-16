@@ -10,7 +10,6 @@ export default defineConfig({
                 'resources/css/bootstrap.css',
                 'resources/js/bootstrapjs.js',
                 'resources/css/style.css',
-                'resources/js/script.js',
             ],
             refresh: [
                 ...refreshPaths,

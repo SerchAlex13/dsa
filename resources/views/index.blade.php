@@ -17,8 +17,8 @@
         </nav>
         <div class="container">
             <div class="title fw-bold">
-                Clases abiertas<br>Registrate ahora!<br>
-                <button class="btn btn-custom mt-3">Registrate ahora</button>
+                DSA Diseños<br>Ropa para playa<br>
+                <button class="btn btn-custom mt-3">Ver productos</button>
             </div>
         </div>
     </header>
