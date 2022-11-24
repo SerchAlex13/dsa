@@ -1,4 +1,8 @@
-<x-plantilla titulo="Editar Prenda">
+<x-plantilla>
+
+    <div class="container p-3">
+        <h1>Editar Prenda</h1>
+    </div>
 
     <div class="container">
         @if ($errors->any())

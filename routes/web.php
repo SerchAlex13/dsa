@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\PrendaController;
-use App\Http\Controllers\CompraController;
-use App\Http\Controllers\CarritoController;
-use App\Http\Controllers\TallaController;
-use App\Http\Controllers\ColorController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\TallaController;
+use App\Http\Controllers\CompraController;
+use App\Http\Controllers\PrendaController;
+use App\Http\Controllers\CarritoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,18 @@ Route::get('/index', function () {
     return view('index');
 });
 
+Route::get('/iniciar_sesion', function () {
+    return view('interfaces/iniciar_sesion');
+});
+
+Route::get('/perfil', function () {
+    return view('interfaces/perfil');
+});
+
+Route::get('/registro_usuario', function () {
+    return view('interfaces/registro_usuario');
+});
+
 // Route::get('/equipo', [EquipoController::class, 'index']);
 // Route::get('/equipo/create', [EquipoController::class, 'create']);
 // Route::get('/equipo/{id}', [EquipoController::class, 'show']);
@@ -35,6 +49,8 @@ Route::resource('compra', CompraController::class);
 Route::resource('carrito', CarritoController::class);
 Route::resource('talla', TallaController::class);
 Route::resource('color', ColorController::class);
+Route::resource('user', UserController::class);
+Route::resource('rol', RolController::class);
 
 
 Route::middleware([

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Prenda;
 use App\Models\Color;
 use App\Models\Talla;
+use App\Models\Prenda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PrendaController extends Controller
 {
@@ -34,9 +35,17 @@ class PrendaController extends Controller
      */
     public function create()
     {
-        $colors = Color::all();
-        $tallas = Talla::all();
-        return view('prendas/prendaCreate', compact('colors', 'tallas'));
+        $response = Gate::inspect('crea-prenda');
+ 
+        if ($response->allowed()) {
+            $colors = Color::all();
+            $tallas = Talla::all();
+            return view('prendas/prendaCreate', compact('colors', 'tallas'));
+        } else {
+            echo $response->message();
+        }
+        
+        
     }
 
     /**
@@ -86,6 +95,10 @@ class PrendaController extends Controller
      */
     public function edit(Prenda $prenda)
     {
+        if (! Gate::allows('edita-prenda')) {
+            abort(403);
+        }
+        
         $colors = Color::all();
         $tallas = Talla::all();
         return view('prendas/prendaEdit', compact('prenda', 'colors', 'tallas'));
@@ -129,7 +142,7 @@ class PrendaController extends Controller
         Prenda::where('id', $prenda->id)->update($request->except('_token', '_method', 'colors_id', 'tallas_id'));
         $prenda->colors()->sync($request->colors_id);
         $prenda->tallas()->sync($request->tallas_id);
-        //$prenda->tallas()->detach();
+        //$prenda->tallas()->detach();//Eliminar todos
         //return redirect()->route('prenda.show', $prenda->id);
         return redirect()->route('prenda.index');
     }
@@ -142,6 +155,7 @@ class PrendaController extends Controller
      */
     public function destroy(Prenda $prenda)
     {
+        $this->authorize('delete', $prenda);
         //$prenda->tallas()->detach();
         $prenda->delete();
 

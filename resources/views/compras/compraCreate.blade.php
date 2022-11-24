@@ -1,5 +1,9 @@
-<x-plantilla titulo="Crear Compra">
+<x-plantilla>
     
+    <div class="container p-3">
+        <h1>Crear Compra</h1>
+    </div>
+
     <div class="container">
         @if ($errors->any())
             <div class="alert alert-danger">

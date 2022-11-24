@@ -13,9 +13,9 @@ class Plantilla extends Component
      *
      * @return void
      */
-    public function __construct($titulo)
+    public function __construct(/*$titulo*/)
     {
-        $this->titulo = $titulo;
+        /*$this->titulo = $titulo;*/
     }
 
     /**

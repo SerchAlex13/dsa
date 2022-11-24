@@ -1,4 +1,8 @@
-<x-plantilla titulo="Editar Carrito">
+<x-plantilla>
+
+    <div class="container p-3">
+        <h1>Editar Carrito</h1>
+    </div>
     
     <div class="container">
         @if ($errors->any())

@@ -1,6 +1,10 @@
 <x-plantilla titulo="Detalle de la Prenda">
 
     <div class="container p-3">
+        <h1>Detalle de la Prenda</h1>
+    </div>
+
+    <div class="container p-3">
         <a href="/prenda" class="btn btn-primary">Listado</a>
     </div>
 

@@ -1,4 +1,8 @@
-<x-plantilla titulo="Listado de Carritos">
+<x-plantilla>
+
+    <div class="container p-3">
+        <h1>Listado de Carritos</h1>
+    </div>
 
     <div class="container p-3">
         <a href="/carrito/create" class="btn btn-primary">Crear Nuevo Carrito</a>

@@ -1,4 +1,8 @@
-<x-plantilla titulo="Listado de Prendas">
+<x-plantilla>
+
+    <div class="container p-3">
+        <h1>Listado de Prendas</h1>
+    </div>
 
     {{-- <div class="container p-3">
         <h2>{{ \Auth::user()->name }} - {{ \Auth::user()->email }}</h2>
@@ -22,7 +26,9 @@
                     <th>Precio</th>
                     <th>Inventario</th>
                     <th>Editar</th>
+                    @can('administrarUsuarios', App\Models\Prenda::class)
                     <th>Eliminar</th>
+                    @endcan
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -46,6 +52,7 @@
                         <td>
                             <a href="/prenda/{{ $prenda->id }}/edit" class="btn btn-outline-dark">Editar</a>
                         </td>
+                        @can('delete', $prenda)
                         <td>
                             <form action="/prenda/{{ $prenda->id }}" method="POST">
                                 @csrf
@@ -53,6 +60,7 @@
                                 <input type="submit" value="Borrar" class="btn btn-outline-danger">
                             </form>
                         </td>
+                        @endcan
                     </tr>
                 @endforeach
             </tbody>
