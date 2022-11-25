@@ -40,6 +40,10 @@ Route::get('/registro_usuario', function () {
     return view('interfaces/registro_usuario');
 });
 
+Route::get('/prenda/correo/{user}/{prenda}', [PrendaController::class, 'notificarNuevaPrenda'])->name('prenda.correo');
+
+Route::get('/descarga/{archivo}', [PrendaController::class, 'descargaArchivo'])->name('descarga');
+
 // Route::get('/equipo', [EquipoController::class, 'index']);
 // Route::get('/equipo/create', [EquipoController::class, 'create']);
 // Route::get('/equipo/{id}', [EquipoController::class, 'show']);

@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Prenda extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+    
     protected $fillable = ['nombre', 'codigo', 'tipo', 'descripcion', 'tela', 'precio', 'inventario'];
     //protected $guarded = ['id'];
     public $timestamps = false;
@@ -25,5 +28,10 @@ class Prenda extends Model
     public function colors()
     {
         return $this->belongsToMany(Color::class);
+    }
+
+    public function archivos()
+    {
+        return $this->hasMany(Archivo::class);
     }
 }

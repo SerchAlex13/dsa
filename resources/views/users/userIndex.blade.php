@@ -23,7 +23,6 @@
                         </td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->rol }}</td>
-                        
                     </tr>
                 @endforeach
             </tbody>

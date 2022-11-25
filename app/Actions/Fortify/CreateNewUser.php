@@ -4,7 +4,6 @@ namespace App\Actions\Fortify;
 
 use App\Models\Team;
 use App\Models\User;
-use App\Models\RolUser;
 use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -37,7 +36,6 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
                 $this->createTeam($user);
-                $this->asignarRol($user);
             });
         });
     }
@@ -55,16 +53,5 @@ class CreateNewUser implements CreatesNewUsers
             'name' => explode(' ', $user->name, 2)[0]."'s Team",
             'personal_team' => true,
         ]));
-    }
-
-    /**
-     * Create a personal team for the user.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
-     */
-    protected function asignarRol(User $user)
-    {
-        RolUser::create(['rol_id' => '3', 'user_id' => $user->id]);
     }
 }

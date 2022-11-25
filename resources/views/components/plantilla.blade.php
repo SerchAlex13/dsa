@@ -53,13 +53,13 @@
                     </li>
                     <li class="nav-item dropdown p-2">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            {{ Auth::user() ? Auth::user()->name : 'Mi cuenta' }}
+                            {{ \Auth::user() ? \Auth::user()->name : 'Mi cuenta' }}
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/iniciar_sesion">Iniciar sesión</a></li>
                             <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
                             <li><a class="dropdown-item" href="/registro_usuario">Regístrate</a></li>
-                            @can('administrarUsuarios', App\Models\Prenda::class)
+                            @can('accionAdministrador', App\Models\Prenda::class)
                             <li><a class="dropdown-item" href="/user">Administrar usuarios</a></li>
                             @endcan
                             <li><hr class="dropdown-divider"></li>

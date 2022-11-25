@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Color;
 use App\Models\Talla;
 use App\Models\Prenda;
+use App\Models\Archivo;
+use App\Mail\NuevaPrenda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class PrendaController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth')->except('index', 'show');
+        $this->middleware('verified')->except('index', 'show');
     }
     /**
      * Display a listing of the resource.
@@ -22,7 +27,8 @@ class PrendaController extends Controller
      */
     public function index()
     {
-        $prendas = Prenda::all();
+        // $users = User::all();
+        $prendas = Prenda::with('colors', 'tallas')->get();
         //$prendas = Prenda::where('user_id', Auth::id())->get();//Para mostrar prendas sólo de el usuario logeado
         //$eventos = Auth::user()->eventos;//Para mostrar prendas sólo de el usuario logeado
         return view('prendas/prendaIndex', compact('prendas'));
@@ -44,7 +50,6 @@ class PrendaController extends Controller
         } else {
             echo $response->message();
         }
-        
         
     }
 
@@ -72,6 +77,20 @@ class PrendaController extends Controller
 
         $prenda->colors()->attach($request->colors_id);
         $prenda->tallas()->attach($request->tallas_id);
+
+        Mail::to('admin@ejemplo.com')->send(new NuevaPrenda($prenda));
+
+        //Archivos
+        if ($request->file('archivo')->isValid()) {
+            $ubicacion = $request->archivo->store('public/prendas');
+
+            $archivo = new Archivo();
+            $archivo->ubicacion = $ubicacion;
+            $archivo->nombre_original = $request->archivo->getClientOriginalName();
+            $archivo->mime = $request->archivo->getClientMimeType();
+
+            $prenda->archivos()->save($archivo);
+        }
 
         return redirect('/prenda');
     }
@@ -160,5 +179,19 @@ class PrendaController extends Controller
         $prenda->delete();
 
         return redirect('/prenda');
+    }
+
+    public function notificarNuevaPrenda(User $user, Prenda $prenda)
+    {
+        //Mail::to($evento->user->email)->send(new NotificaEvento($evento));
+
+        Mail::to($user->email)->send(new NuevaPrenda($user, $prenda));
+
+        return back();
+    }
+
+    public function descargaArchivo(Archivo $archivo)
+    {
+        return Storage::download($archivo->ubicacion);
     }
 }

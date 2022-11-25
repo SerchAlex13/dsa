@@ -19,11 +19,16 @@
     <div class="container">
         <div class="row">
             <div class="col-8">
-                <form action="/prenda" method="POST" class="row g-3">
+                <form action="/prenda" method="POST" enctype="multipart/form-data" class="row g-3">
                     @csrf
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" name="nombre" id="nombre" value="{{ old('nombre')}}">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="archivo" class="form-label">Foto</label>
+                        <input type="file" class="form-control" name="archivo">
+                        {{-- <input type="file" name="archivos[]"> --}}
                     </div>
                     <div class="col-md-6">
                         <label for="codigo" class="form-label">Código</label>

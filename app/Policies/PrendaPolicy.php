@@ -98,7 +98,7 @@ class PrendaPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function administrarUsuarios(User $user)
+    public function accionAdministrador(User $user)
     {
         return $user->rol === 'Administrador';
     }

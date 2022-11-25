@@ -20,13 +20,15 @@
                     <th>Nombre</th>
                     <th>Código</th>
                     <th>Tipo</th>
-                    <th>Imagen</th>
                     <th>Descripción</th>
+                    <th>Colores</th>
+                    <th>Tallas</th>
                     <th>Tela</th>
                     <th>Precio</th>
                     <th>Inventario</th>
+                    {{-- <th>Acciones</th> --}}
                     <th>Editar</th>
-                    @can('administrarUsuarios', App\Models\Prenda::class)
+                    @can('accionAdministrador', App\Models\Prenda::class)
                     <th>Eliminar</th>
                     @endcan
                 </tr>
@@ -42,13 +44,23 @@
                         </td>
                         <td>{{ $prenda->codigo }}</td>
                         <td>{{ $prenda->tipo }}</td>
-                        <td>
-                            <img src="/imagen/{{ $prenda->imagen }}" alt="" width="60%">
-                        </td>
                         <td>{{ $prenda->descripcion }}</td>
+                        <td>
+                            @foreach ($prenda->colors as $color)
+                                {{ $color->nombre }}<br>
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ($prenda->tallas as $talla)
+                                {{ $talla->nombre }}<br>
+                            @endforeach
+                        </td>
                         <td>{{ $prenda->tela }}</td>
                         <td>{{ $prenda->precio }}</td>
                         <td>{{ $prenda->inventario }}</td>
+                        {{-- <td>
+                            <a href="{{ route('prenda.correo', [$users, $prenda]) }}" class="btn btn-outline-dark">Notificar</a>
+                        </td> --}}
                         <td>
                             <a href="/prenda/{{ $prenda->id }}/edit" class="btn btn-outline-dark">Editar</a>
                         </td>
