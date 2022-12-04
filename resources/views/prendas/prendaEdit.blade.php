@@ -67,10 +67,6 @@
                         <label for="precio" class="form-label">Precio</label>
                         <input type="number" step="0.01" class="form-control" name="precio" id="precio" value="{{ $prenda->precio }}">
                     </div>
-                    <div class="col-md-6">
-                        <label for="inventario" class="form-label">Inventario</label>
-                        <input type="number" class="form-control" name="inventario" id="inventario" value="{{ $prenda->inventario }}">
-                    </div>
                     <div class="col-md-2 p-3">
                         <button type="submit" class="btn btn-dark">Guardar</button>
                     </div>

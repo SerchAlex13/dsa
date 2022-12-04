@@ -53,7 +53,7 @@ class PrendaPolicy
      */
     public function update(User $user, Prenda $prenda)
     {
-        //
+        return $user->rol === 'Administrador';
     }
 
     /**
@@ -98,8 +98,20 @@ class PrendaPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function accionAdministrador(User $user)
+    public function isAdmin(User $user)
     {
         return $user->rol === 'Administrador';
     }
+
+    /**
+     *
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function isLoged(User $user)
+    {
+        return $user;
+    }
+
 }

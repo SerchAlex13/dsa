@@ -21,7 +21,6 @@ return new class extends Migration
             $table->text('descripcion');
             $table->string('tela');
             $table->float('precio')->unsigned()->default(0);
-            $table->integer('inventario')->unsigned()->default(0);
         });
     }
 

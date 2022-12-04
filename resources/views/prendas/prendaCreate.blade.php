@@ -16,7 +16,7 @@
         @endif
     </div>
     
-    <div class="container">
+    <div class="container mb-5">
         <div class="row">
             <div class="col-8">
                 <form action="/prenda" method="POST" enctype="multipart/form-data" class="row g-3">
@@ -27,8 +27,8 @@
                     </div>
                     <div class="col-md-12">
                         <label for="archivo" class="form-label">Foto</label>
-                        <input type="file" class="form-control" name="archivo">
-                        {{-- <input type="file" name="archivos[]"> --}}
+                        {{-- <input type="file" class="form-control" name="archivo"> --}}
+                        <input type="file" class="form-control" name="archivos[]" multiple required>
                     </div>
                     <div class="col-md-6">
                         <label for="codigo" class="form-label">Código</label>
@@ -66,10 +66,6 @@
                     <div class="col-md-6">
                         <label for="precio" class="form-label">Precio</label>
                         <input type="number" step="0.01" class="form-control" name="precio" id="precio" value="{{ old('precio')}}">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inventario" class="form-label">Inventario</label>
-                        <input type="number" class="form-control" name="inventario" id="inventario" value="{{ old('inventario')}}">
                     </div>
                     <div class="col-md-2 p-3">
                         <button type="submit" class="btn btn-dark">Guardar</button>

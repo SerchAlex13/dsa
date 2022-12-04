@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PrendaController extends Controller
 {
@@ -28,7 +29,7 @@ class PrendaController extends Controller
     public function index()
     {
         // $users = User::all();
-        $prendas = Prenda::with('colors', 'tallas')->get();
+        $prendas = Prenda::with('colors', 'tallas', 'archivos')->get();
         //$prendas = Prenda::where('user_id', Auth::id())->get();//Para mostrar prendas sólo de el usuario logeado
         //$eventos = Auth::user()->eventos;//Para mostrar prendas sólo de el usuario logeado
         return view('prendas/prendaIndex', compact('prendas'));
@@ -69,30 +70,45 @@ class PrendaController extends Controller
             'descripcion' => 'required|max:255',
             'tela' => 'required|max:255',
             'precio' => 'required|min:0',
-            'inventario' => 'integer|min:0'
         ]);
 
-        //$request->merge(['user_id' => Auth::id()]);
-        $prenda = Prenda::create($request->all());
+        if ($request->hasFile('archivos')) {
+            //$request->merge(['user_id' => Auth::id()]);
+            $prenda = Prenda::create($request->all());
 
-        $prenda->colors()->attach($request->colors_id);
-        $prenda->tallas()->attach($request->tallas_id);
+            $prenda->colors()->attach($request->colors_id);
+            $prenda->tallas()->attach($request->tallas_id);
 
-        Mail::to('admin@ejemplo.com')->send(new NuevaPrenda($prenda));
+            Mail::to('admin@ejemplo.com')->send(new NuevaPrenda($prenda));
 
-        //Archivos
-        if ($request->file('archivo')->isValid()) {
-            $ubicacion = $request->archivo->store('public/prendas');
+        
+            //Archivos
+            $archivos = $request->file('archivos');
 
-            $archivo = new Archivo();
-            $archivo->ubicacion = $ubicacion;
-            $archivo->nombre_original = $request->archivo->getClientOriginalName();
-            $archivo->mime = $request->archivo->getClientMimeType();
+            
+            foreach ($archivos as $archivo) {
+                if ($archivo->isValid()) {
+                    $ubicacion = $archivo->storeAs('public/' . $prenda->id . '/', $archivo->getClientOriginalName());
 
-            $prenda->archivos()->save($archivo);
+                    $foto = new Archivo();
+                    $foto->ubicacion = $ubicacion;
+                    $foto->nombre_original = $archivo->getClientOriginalName();
+                    $foto->mime = $archivo->getClientMimeType();
+
+                    $prenda->archivos()->save($foto);
+                }
+            }
+
+            alert()->success('Éxito','Se guardó la prenda correctamente');
+
+            return redirect()->route('prenda.show', $prenda->id);
+            
+        } else {
+            alert()->error('Error','Faltaron campos por llenar');
+
+            return back();
         }
-
-        return redirect('/prenda');
+        
     }
 
     /**
@@ -114,9 +130,7 @@ class PrendaController extends Controller
      */
     public function edit(Prenda $prenda)
     {
-        if (! Gate::allows('edita-prenda')) {
-            abort(403);
-        }
+        $this->authorize('update', $prenda);
         
         $colors = Color::all();
         $tallas = Talla::all();
@@ -140,7 +154,6 @@ class PrendaController extends Controller
             'descripcion' => 'required|max:255',
             'tela' => 'required|max:255',
             'precio' => 'required|min:0',
-            'inventario' => 'integer|min:0'
         ]);
 
         //Actualizar
@@ -176,6 +189,9 @@ class PrendaController extends Controller
     {
         $this->authorize('delete', $prenda);
         //$prenda->tallas()->detach();
+        foreach ($prenda->archivos as $archivo) {
+            unlink(public_path('storage/' . $prenda->id . '/' . $archivo->nombre_original));
+        }
         $prenda->delete();
 
         return redirect('/prenda');
