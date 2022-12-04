@@ -42,16 +42,12 @@ class PrendaController extends Controller
      */
     public function create()
     {
-        $response = Gate::inspect('crea-prenda');
+        $this->authorize('create', App\Models\Prenda::class);
  
-        if ($response->allowed()) {
-            $colors = Color::all();
-            $tallas = Talla::all();
-            return view('prendas/prendaCreate', compact('colors', 'tallas'));
-        } else {
-            echo $response->message();
-        }
-        
+        $colors = Color::all();
+        $tallas = Talla::all();
+
+        return view('prendas/prendaCreate', compact('colors', 'tallas'));
     }
 
     /**
@@ -176,7 +172,7 @@ class PrendaController extends Controller
         $prenda->tallas()->sync($request->tallas_id);
         //$prenda->tallas()->detach();//Eliminar todos
         //return redirect()->route('prenda.show', $prenda->id);
-        return redirect()->route('prenda.index');
+        return redirect()->route('prenda.show', $prenda->id);
     }
 
     /**

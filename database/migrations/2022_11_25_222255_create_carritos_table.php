@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('prenda_id')->constrained();
-            $table->foreignId('color_id')->constrained();
-            $table->foreignId('talla_id')->constrained();
+            $table->string('color');
+            $table->string('talla');
             $table->integer('cantidad')->unsigned();
             $table->float('total')->unsigned();
         });

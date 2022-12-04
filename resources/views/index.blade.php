@@ -10,10 +10,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-light navbar-expand-lg">
+    <header class="landingpage">
+        <nav class="navbar navbar-dark navbar-expand-lg">
             <div class="container">
-                <img class="logo" src="{{ \Storage::url('public/img/dsa_logo2_darkblue.png') }}" alt="logo">
+                <div class="mt-5 mb-5">
+
+                </div>
                 <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -49,7 +51,7 @@
                             <div>
                                 <form class="p-1" method="POST" action="/logout">
                                     @csrf
-                                    <input class="btn btn-outline-dark" type="submit" value="Cerrar sesión">
+                                    <input class="btn btn-outline-light" type="submit" value="Cerrar sesión">
                                 </form>
                             </div>
                         </li>
@@ -60,8 +62,8 @@
         </nav>
         <div class="container">
             <div class="title">
-                <br><h1 class="display-1">DSA Diseños</h1><br>
-                <a class="btn btn-custom mt-3" href="/prenda">Ver productos</a>
+                <img class="logo" src="{{ \Storage::url('public/img/dsa_logo0.png') }}" alt="logo">
+                <br><br><a class="btn btn-custom mt-3" href="/prenda">Ver productos</a>
             </div>
         </div>
     </header>
@@ -76,7 +78,7 @@
                 <div class="row mt-4 mb-4">
 
                     <div class="col">
-                        <div class="card w-100">
+                        <div class="card w-100 shadow-lg bg-body rounded">
                             <img src="{{ \Storage::url('public/img/playera_licra2.jpg') }}" class="card-img-top" alt="playera_licra">
                             <div class="card-body">
                                 <a href="/prenda" class="nav-link link-dark stretched-link"><h5 class="card-title">Playeras de licra</h5></a>
@@ -85,7 +87,7 @@
                     </div>
 
                     <div class="col">
-                        <div class="card w-100">
+                        <div class="card w-100 shadow-lg bg-body rounded">
                             <img src="{{ \Storage::url('public/img/playera_diseno.jpg') }}" class="card-img-top" alt="playera_diseno">
                             <div class="card-body">
                                 <a href="/prenda" class="nav-link link-dark stretched-link"><h5 class="card-title">Playeras con diseño</h5></a>
@@ -94,7 +96,7 @@
                     </div>
 
                     <div class="col">
-                        <div class="card w-100">
+                        <div class="card w-100 shadow-lg bg-body rounded">
                             <img src="{{ \Storage::url('public/img/accesorios.jpg') }}" class="card-img-top" alt="accesorios">
                             <div class="card-body">
                                 <a href="/prenda" class="nav-link link-dark stretched-link"><h5 class="card-title">Accesorios y más</h5></a>
@@ -148,7 +150,7 @@
                     <div class="col-lg-4 px-5">
                         <h4 class="mb-4">Créditos</h4>
                         <p>
-                            <a class="nav-link link-light" href="https://www.freepik.es/foto-gratis/hermosa-costa-fotografia-drone-agua-mar-clara_19075385.htm#from_view=detail_collection">Imagen de rawpixel.com en Freepik</a>
+                            <a class="nav-link link-primary" href="https://www.freepik.es/foto-gratis/monocromo-gota-agua-puntos-azules-mas-oscuros_6082299.htm?query=agua abstracto">Imagen de Freepik</a>
                         </p>
                     </div>
                 </div>

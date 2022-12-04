@@ -24,6 +24,5 @@ class DatabaseSeeder extends Seeder
         //$this->call(PrendasSeeder::class);
         $this->call(TallasSeeder::class);
         $this->call(ColorsSeeder::class);
-        $this->call(RolsSeeder::class);
     }
 }

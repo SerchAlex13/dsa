@@ -19,91 +19,93 @@
 </head>
 <body style="background-color:#f5f5f5;">
 
-    {{-- Menú navbar --}}
-    <nav class="navbar sticky-top navbar-expand-md navbar-dark" style="background-color: #003cff;">
-        <div class="container-fluid">
-            {{-- Icono --}}
-            <a class="navbar-brand" href="/">
-                <img class="logo" src="{{ \Storage::url('public/img/dsa_logo2_light3.png') }}" alt="logo">
-            </a>
-            {{-- Botón del menú --}}
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <header class="plantilla sticky-top">
+        {{-- Menú navbar --}}
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div class="container-fluid">
+                {{-- Icono --}}
+                <a class="navbar-brand" href="/">
+                    <img class="logo w-75" src="{{ \Storage::url('public/img/dsa_logo_chico2.png') }}" alt="logo">
+                </a>
+                {{-- Botón del menú --}}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            {{-- Elementos del menú colapsable --}}
-            <div class="collapse navbar-collapse" id="menu">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item p-2">
-                        <a class="nav-link active" href="/">Inicio</a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="nav-link" href="/prenda">Productos</a>
-                    </li>
-                    <li class="nav-item p-2 d-flex flex-fill">
-                        <form class="d-flex" role="search">
-                            <div class="input-group mb-2">
-                                <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" size="50">
-                                <button class="btn btn-info" type="submit">Buscar</button>
-                            </div>
-                        </form>
-                    </li>
-                    <li class="nav-item dropdown p-2">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            {{ \Auth::user() ? \Auth::user()->name : 'Mi cuenta' }}
-                        </a>
-                        <ul class="dropdown-menu">
-                            @cannot('isLoged', App\Models\Prenda::class)
-                            <li><a class="dropdown-item" href="/iniciar_sesion">Iniciar sesión</a></li>
-                            <li><a class="dropdown-item" href="/registro_usuario">Regístrate</a></li>
-                            @endcan
-                            @can('isLoged', App\Models\Prenda::class)
-                            <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
-                            @endcan
-                            @can('isAdmin', App\Models\Prenda::class)
-                            <li><a class="dropdown-item" href="/user">Administrar usuarios</a></li>
-                            @endcan
-                            @can('isLoged', App\Models\Prenda::class)
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <div class="d-flex justify-content-center">
-                                    <form class="p-2" method="POST" action="/logout">
-                                        @csrf
-                                        <input class="btn btn-outline-danger" type="submit" value="Cerrar sesión">
-                                    </form>
+                {{-- Elementos del menú colapsable --}}
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item p-2">
+                            <a class="nav-link" href="/">Inicio</a>
+                        </li>
+                        <li class="nav-item p-2">
+                            <a class="nav-link" href="/prenda">Productos</a>
+                        </li>
+                        <li class="nav-item p-2 d-flex flex-fill">
+                            <form class="d-flex" role="search">
+                                <div class="input-group mb-2">
+                                    <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" size="50">
+                                    <button class="btn btn-info" type="submit">Buscar</button>
                                 </div>
-                            </li>
-                            @endcan
-                        </ul>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a href="/carrito" class="nav-link">Carrito</a>
-                    </li>
-                </ul>
+                            </form>
+                        </li>
+                        <li class="nav-item dropdown p-2">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                {{ \Auth::user() ? \Auth::user()->name : 'Mi cuenta' }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                @cannot('isLoged', App\Models\Prenda::class)
+                                <li><a class="dropdown-item" href="/iniciar_sesion">Iniciar sesión</a></li>
+                                <li><a class="dropdown-item" href="/registro_usuario">Regístrate</a></li>
+                                @endcan
+                                @can('isLoged', App\Models\Prenda::class)
+                                <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
+                                @endcan
+                                @can('isAdmin', App\Models\Prenda::class)
+                                <li><a class="dropdown-item" href="/user">Administrar usuarios</a></li>
+                                @endcan
+                                @can('isLoged', App\Models\Prenda::class)
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <div class="d-flex justify-content-center">
+                                        <form class="p-2" method="POST" action="/logout">
+                                            @csrf
+                                            <input class="btn btn-outline-danger" type="submit" value="Cerrar sesión">
+                                        </form>
+                                    </div>
+                                </li>
+                                @endcan
+                            </ul>
+                        </li>
+                        <li class="nav-item p-2">
+                            <a href="/carrito" class="nav-link">Carrito</a>
+                        </li>
+                    </ul>
 
-                
-{{-- 
-                <form class="p-2" method="POST" action="/registro_usuario">
-                    @csrf
-                    <input class="btn btn-outline-light" type="submit" value="Regístrate">
-                </form>
+                    
+    {{-- 
+                    <form class="p-2" method="POST" action="/registro_usuario">
+                        @csrf
+                        <input class="btn btn-outline-light" type="submit" value="Regístrate">
+                    </form>
 
-                <form class="p-2" method="POST" action="/logout">
-                    @csrf
-                    <input class="btn btn-outline-light" type="submit" value="LogOut">
-                </form> --}}
+                    <form class="p-2" method="POST" action="/logout">
+                        @csrf
+                        <input class="btn btn-outline-light" type="submit" value="LogOut">
+                    </form> --}}
 
 
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
 
     {{ $slot }}
 
-    <footer>
+    <footer class="container-fluid">
         <div class="row text-white">
             <div class="container">
                 <div class="row gy-5">

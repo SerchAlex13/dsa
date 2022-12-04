@@ -41,7 +41,7 @@ class PrendaPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->rol === 'Administrador';
     }
 
     /**
@@ -77,7 +77,7 @@ class PrendaPolicy
      */
     public function restore(User $user, Prenda $prenda)
     {
-        //
+        return $user->rol === 'Administrador';
     }
 
     /**
@@ -89,7 +89,7 @@ class PrendaPolicy
      */
     public function forceDelete(User $user, Prenda $prenda)
     {
-        //
+        return $user->rol === 'Administrador';
     }
 
     /**

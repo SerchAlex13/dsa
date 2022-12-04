@@ -67,11 +67,13 @@
                         <label for="precio" class="form-label">Precio</label>
                         <input type="number" step="0.01" class="form-control" name="precio" id="precio" value="{{ old('precio')}}">
                     </div>
-                    <div class="col-md-2 p-3">
-                        <button type="submit" class="btn btn-dark">Guardar</button>
-                    </div>
-                    <div class="col-md-2 p-3">
-                        <a href="/prenda" class="btn btn-info">Cancelar</a>
+                    <div class="d-flex">
+                        <div class="col-md-2 p-3">
+                            <button type="submit" class="btn btn-dark">Guardar</button>
+                        </div>
+                        <div class="col-md-2 p-3">
+                            <a href="/prenda" class="btn btn-info">Cancelar</a>
+                        </div>
                     </div>
                 </form>
             </div>

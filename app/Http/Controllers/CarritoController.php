@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Carrito;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarritoController extends Controller
 {
@@ -14,7 +15,8 @@ class CarritoController extends Controller
      */
     public function index()
     {
-        $carritos = Carrito::all();
+        $carritos = Carrito::where('user_id', Auth::id())->get();
+        
 
         return view('carritos/carritoIndex', compact('carritos'));
     }
@@ -26,7 +28,7 @@ class CarritoController extends Controller
      */
     public function create()
     {
-        return view('carritos/carritoCreate');
+
     }
 
     /**
@@ -38,13 +40,21 @@ class CarritoController extends Controller
     public function store(Request $request)
     {
         //Validación
-        // $request->validate([
-        //     'prenda_id' => 'required',
-        // ]);
+        $request->validate([
+            'prenda_id' => 'required',
+            'color' => 'required',
+            'talla' => 'required',
+            'cantidad' => 'required',
+            'total' => 'required',
+        ]);
+
+        $request->merge(['user_id' => Auth::id()]);
 
         Carrito::create($request->all());
 
-        return redirect('/carrito');
+        toast('Se agregó al carrito','success')->position('bottom-end');
+
+        return redirect()->route('prenda.show', $request->prenda_id);
     }
 
     /**
@@ -55,7 +65,7 @@ class CarritoController extends Controller
      */
     public function show(Carrito $carrito)
     {
-        return view('carritos/carritoShow', compact('carrito'));
+        
     }
 
     /**
@@ -66,7 +76,7 @@ class CarritoController extends Controller
      */
     public function edit(Carrito $carrito)
     {
-        return view('carritos/carritoEdit', compact('carrito'));
+
     }
 
     /**
@@ -78,15 +88,7 @@ class CarritoController extends Controller
      */
     public function update(Request $request, Carrito $carrito)
     {
-        //Validación
-        // $request->validate([
-        //     'prenda_id' => 'required',
-        // ]);
 
-        //Actualizar
-        Carrito::where('id', $carrito->id)->update($request->except('_token', '_method'));
-
-        return redirect('/carrito');
     }
 
     /**
