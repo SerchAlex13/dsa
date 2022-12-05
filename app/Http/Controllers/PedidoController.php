@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Carrito;
+use App\Models\Pedido;
 use Illuminate\Http\Request;
+use App\Mail\PedidoRealizado;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
-class CarritoController extends Controller
+class PedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +18,9 @@ class CarritoController extends Controller
      */
     public function index()
     {
-        $carritos = Carrito::where('user_id', Auth::id())->get();
+        $pedidos = Pedido::where('user_id', Auth::id())->get();
 
-        return view('carritos/carritoIndex', compact('carritos'));
+        return view('pedidos/pedidoIndex', compact('pedidos'));
     }
 
     /**
@@ -27,7 +30,7 @@ class CarritoController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -40,67 +43,65 @@ class CarritoController extends Controller
     {
         //Validación
         $request->validate([
-            'prenda_id' => 'required',
-            'color' => 'required',
-            'talla' => 'required',
-            'cantidad' => 'required',
+            'domicilio' => 'required',
             'total' => 'required',
         ]);
 
         $request->merge(['user_id' => Auth::id()]);
 
-        Carrito::create($request->all());
+        $pedido = Pedido::create($request->all());
 
-        toast('Se agregó al carrito','success')->position('bottom-end');
+        $deleted = DB::table('carritos')->where('user_id', Auth::id())->delete();
 
-        return redirect()->route('prenda.show', $request->prenda_id);
+        Mail::to(Auth::user()->email)->send(new PedidoRealizado($pedido));
+
+        alert()->success('Éxito','Se realizó el pedido correctamente');
+
+        return redirect()->route('pedido.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Carrito  $carrito
+     * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function show(Carrito $carrito)
+    public function show(Pedido $pedido)
     {
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Carrito  $carrito
+     * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function edit(Carrito $carrito)
+    public function edit(Pedido $pedido)
     {
-
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Carrito  $carrito
+     * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carrito $carrito)
+    public function update(Request $request, Pedido $pedido)
     {
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Carrito  $carrito
+     * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Carrito $carrito)
+    public function destroy(Pedido $pedido)
     {
-        $carrito->delete();
-        
-
-        return redirect('/carrito');
+        //
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\TallaController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PrendaController;
 use App\Http\Controllers\CarritoController;
 
@@ -54,7 +54,7 @@ Route::resource('carrito', CarritoController::class);
 Route::resource('talla', TallaController::class);
 Route::resource('color', ColorController::class);
 Route::resource('user', UserController::class);
-Route::resource('rol', RolController::class);
+Route::resource('pedido', PedidoController::class);
 
 
 Route::middleware([

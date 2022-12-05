@@ -45,7 +45,7 @@
                             <form class="d-flex" role="search">
                                 <div class="input-group mb-2">
                                     <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" size="50">
-                                    <button class="btn btn-info" type="submit">Buscar</button>
+                                    <button class="btn btn-info" type="submit"><i class="bi bi-search"></i></button>
                                 </div>
                             </form>
                         </li>
@@ -57,9 +57,11 @@
                                 @cannot('isLoged', App\Models\Prenda::class)
                                 <li><a class="dropdown-item" href="/iniciar_sesion">Iniciar sesión</a></li>
                                 <li><a class="dropdown-item" href="/registro_usuario">Regístrate</a></li>
+                                
                                 @endcan
                                 @can('isLoged', App\Models\Prenda::class)
                                 <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
+                                <li><a class="dropdown-item" href="/pedido">Historial de pedidos</a></li>
                                 @endcan
                                 @can('isAdmin', App\Models\Prenda::class)
                                 <li><a class="dropdown-item" href="/user">Administrar usuarios</a></li>
@@ -78,7 +80,7 @@
                             </ul>
                         </li>
                         <li class="nav-item p-2">
-                            <a href="/carrito" class="nav-link">Carrito</a>
+                            <a href="/carrito" class="nav-link"><i class="bi bi-cart3"></i> Carrito</a>
                         </li>
                     </ul>
 
