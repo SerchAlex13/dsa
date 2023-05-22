@@ -79,9 +79,16 @@
                                 @endcan
                             </ul>
                         </li>
+                        @cannot('isLoged', App\Models\Prenda::class)
+                        <li class="nav-item p-2">
+                            <a href="/iniciar_sesion" class="nav-link"><i class="bi bi-cart3"></i> Carrito</a>
+                        </li>
+                        @endcan
+                        @can('isLoged', App\Models\Prenda::class)
                         <li class="nav-item p-2">
                             <a href="/carrito" class="nav-link"><i class="bi bi-cart3"></i> Carrito</a>
                         </li>
+                        @endcan
                     </ul>
 
                     

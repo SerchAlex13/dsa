@@ -114,4 +114,37 @@ class PrendaPolicy
         return $user;
     }
 
+    /**
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function mostrarPlayeras(User $user)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function mostrarShorts(User $user)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function mostrarAccesorioss(User $user)
+    {
+        return true;
+    }
+
 }

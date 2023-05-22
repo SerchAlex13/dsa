@@ -35,9 +35,16 @@
                         <input type="text" class="form-control" name="codigo" id="codigo" value="{{ old('codigo')}}">
                     </div>
                     <div class="col-md-6">
-                        <label for="tipo" class="form-label">Tipo de prenda</label>
-                        <input type="text" class="form-control" name="tipo" id="tipo" value="{{ old('tipo')}}">
+                        <label class="form-label">Tipo de prenda</label>
+                        <select name="tipo" class="form-control selectpicker">
+                            <option value="Playera">Playera</option>
+                            <option value="Short">Short</option>
+                            <option value="Bolsa">Bolsa</option>
+                            <option value="Sombrero">Sombrero</option>
+                            <option value="Mandil">Mandil</option>
+                        </select>
                     </div>
+
                     <div class="col-md-12">
                         <label for="descripcion" class="form-label">Descripción</label>
                         <!-- <input type="text" class="form-control" name="descripcion" id="descripcion"> -->
@@ -60,8 +67,13 @@
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label for="tela" class="form-label">Tela</label>
-                        <input type="text" class="form-control" name="tela" id="tela" value="{{ old('tela')}}">
+                        <label class="form-label">Tela</label>
+                        <select name="tela" class="form-control selectpicker">
+                            <option value="Algodón">Algodón</option>
+                            <option value="Poliéster">Poliéster</option>
+                            <option value="Licra">Licra</option>
+                            <option value="Nylon">Nylon</option>
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label for="precio" class="form-label">Precio</label>

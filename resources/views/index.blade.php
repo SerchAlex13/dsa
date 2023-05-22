@@ -81,7 +81,7 @@
                         <div class="card w-100 shadow-lg bg-body rounded">
                             <img src="{{ \Storage::url('public/img/playera_licra2.jpg') }}" class="card-img-top" alt="playera_licra">
                             <div class="card-body">
-                                <a href="/prenda" class="nav-link link-dark stretched-link"><h5 class="card-title">Playeras de licra</h5></a>
+                                <a href="/prenda/tipo/playeras" class="nav-link link-dark stretched-link"><h5 class="card-title">Playeras</h5></a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                         <div class="card w-100 shadow-lg bg-body rounded">
                             <img src="{{ \Storage::url('public/img/playera_diseno.jpg') }}" class="card-img-top" alt="playera_diseno">
                             <div class="card-body">
-                                <a href="/prenda" class="nav-link link-dark stretched-link"><h5 class="card-title">Playeras con diseño</h5></a>
+                                <a href="/prenda/tipo/shorts" class="nav-link link-dark stretched-link"><h5 class="card-title">Shorts</h5></a>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                         <div class="card w-100 shadow-lg bg-body rounded">
                             <img src="{{ \Storage::url('public/img/accesorios.jpg') }}" class="card-img-top" alt="accesorios">
                             <div class="card-body">
-                                <a href="/prenda" class="nav-link link-dark stretched-link"><h5 class="card-title">Accesorios y más</h5></a>
+                                <a href="/prenda/tipo/accesorios" class="nav-link link-dark stretched-link"><h5 class="card-title">Accesorios y más</h5></a>
                             </div>
                         </div>
                     </div>

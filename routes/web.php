@@ -41,6 +41,9 @@ Route::get('/registro_usuario', function () {
 });
 
 Route::get('/prenda/correo/{user}/{prenda}', [PrendaController::class, 'notificarNuevaPrenda'])->name('prenda.correo');
+Route::get('/prenda/tipo/playeras', [PrendaController::class, 'mostrarPlayeras'])->name('prenda.playeras');
+Route::get('/prenda/tipo/shorts', [PrendaController::class, 'mostrarShorts'])->name('prenda.shorts');
+Route::get('/prenda/tipo/accesorios', [PrendaController::class, 'mostrarAccesorios'])->name('prenda.accesorios');
 
 Route::get('/descarga/{archivo}', [PrendaController::class, 'descargaArchivo'])->name('descarga');
 

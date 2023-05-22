@@ -75,7 +75,7 @@ class PrendaController extends Controller
             $prenda->colors()->attach($request->colors_id);
             $prenda->tallas()->attach($request->tallas_id);
 
-            Mail::to('admin@ejemplo.com')->send(new NuevaPrenda($prenda));
+            //Mail::to('admin@ejemplo.com')->send(new NuevaPrenda($prenda));
 
         
             //Archivos
@@ -205,5 +205,26 @@ class PrendaController extends Controller
     public function descargaArchivo(Archivo $archivo)
     {
         return Storage::download($archivo->ubicacion);
+    }
+
+    public function mostrarPlayeras()
+    {
+        $prendas = Prenda::where('tipo', 'Playera')->with('colors', 'tallas', 'archivos')->get();
+        return view('prendas/prendaIndex', compact('prendas'));
+    }
+
+    public function mostrarShorts()
+    {
+        $prendas = Prenda::where('tipo', 'Short')->with('colors', 'tallas', 'archivos')->get();
+        return view('prendas/prendaIndex', compact('prendas'));
+    }
+
+    public function mostrarAccesorios()
+    {
+        $prendas = Prenda::where([
+            ['tipo', 'Sombrero'], ['tipo', 'Bolsa'], ['tipo', 'Mandil']
+            ])->with('colors', 'tallas', 'archivos')->get();
+            
+        return view('prendas/prendaIndex', compact('prendas'));
     }
 }

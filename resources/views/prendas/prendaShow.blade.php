@@ -112,9 +112,16 @@
                                 <input type="text" class="form-control" name="total" id="total" readonly>
                                 
                             </div>
+                            @cannot('isLoged', App\Models\Prenda::class)
+                            <div class="p-3">
+                                <a href="/iniciar_sesion" class="btn btn-info"><i class="bi bi-cart3"></i> Agregar al carrito</a>
+                            </div>
+                            @endcan
+                            @can('isLoged', App\Models\Prenda::class)
                             <div class="p-3">
                                 <button type="submit" class="btn btn-info"><i class="bi bi-cart3"></i> Agregar al carrito</button>
                             </div>
+                            @endcan
                         </div>
                         <div class="p-3">
                             <a href="/prenda" class="btn btn-dark">Regresar</a>
