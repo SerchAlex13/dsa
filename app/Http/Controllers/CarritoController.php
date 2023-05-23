@@ -15,7 +15,7 @@ class CarritoController extends Controller
      */
     public function index()
     {
-        $carritos = Carrito::where('user_id', Auth::id())->get();
+        $carritos = Carrito::where([['user_id', Auth::id()], ['estado', 'En el carrito']])->get();
 
         return view('carritos/carritoIndex', compact('carritos'));
     }
@@ -75,7 +75,7 @@ class CarritoController extends Controller
      */
     public function edit(Carrito $carrito)
     {
-
+        
     }
 
     /**
@@ -87,7 +87,14 @@ class CarritoController extends Controller
      */
     public function update(Request $request, Carrito $carrito)
     {
+        //Validar
+        $request->validate([
+            'estado' => 'required',
+        ]);
 
+        Carrito::where('id', $carrito->id)->update($request->except('_token', '_method'));
+
+        return redirect()->route('pedido.index');
     }
 
     /**

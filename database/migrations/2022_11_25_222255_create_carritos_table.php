@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('talla');
             $table->integer('cantidad')->unsigned();
             $table->float('total')->unsigned();
+            $table->string('estado')->default('En el carrito');
         });
     }
 

@@ -18,8 +18,10 @@ class PrendaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index', 'show');
-        $this->middleware('verified')->except('index', 'show');
+        $this->middleware('auth')->except('index', 'show',
+            'mostrarPlayeras', 'mostrarShorts', 'mostrarAccesorios', 'mostrarSombreros', 'mostrarBolsas', 'mostrarMandiles');
+        $this->middleware('verified')->except('index', 'show',
+            'mostrarPlayeras', 'mostrarShorts', 'mostrarAccesorios', 'mostrarSombreros', 'mostrarBolsas', 'mostrarMandiles');
     }
     /**
      * Display a listing of the resource.
@@ -219,11 +221,28 @@ class PrendaController extends Controller
         return view('prendas/prendaIndex', compact('prendas'));
     }
 
+    public function mostrarSombreros()
+    {
+        $prendas = Prenda::where('tipo', 'Sombrero')->with('colors', 'tallas', 'archivos')->get();
+        return view('prendas/prendaIndex', compact('prendas'));
+    }
+
+    public function mostrarBolsas()
+    {
+        $prendas = Prenda::where('tipo', 'Bolsa')->with('colors', 'tallas', 'archivos')->get();
+        return view('prendas/prendaIndex', compact('prendas'));
+    }
+
+    public function mostrarMandiles()
+    {
+        $prendas = Prenda::where('tipo', 'Mandil')->with('colors', 'tallas', 'archivos')->get();
+        return view('prendas/prendaIndex', compact('prendas'));
+    }
+
     public function mostrarAccesorios()
     {
-        $prendas = Prenda::where([
-            ['tipo', 'Sombrero'], ['tipo', 'Bolsa'], ['tipo', 'Mandil']
-            ])->with('colors', 'tallas', 'archivos')->get();
+        $prendas = Prenda::where('tipo', 'Sombrero')->orWhere('tipo', 'Bolsa')->orWhere('tipo', 'Mandil')
+        ->with('colors', 'tallas', 'archivos')->get();
             
         return view('prendas/prendaIndex', compact('prendas'));
     }

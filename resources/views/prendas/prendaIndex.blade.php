@@ -1,8 +1,27 @@
 <x-plantilla>
 
     <div class="container p-3">
-        <h1 class="display-6">Nuestros productos</h1>
+        <div class="row row-cols-1 row-cols-md-8 g-4">
+            <div class="col">
+                <h1 class="display-6">Nuestros productos</h1>
+            </div>
+            
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Filtrar
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/prenda/tipo/playeras">Playeras</a></li>
+                    <li><a class="dropdown-item" href="/prenda/tipo/shorts">Shorts</a></li>
+                    <li><a class="dropdown-item" href="/prenda/tipo/sombreros">Sombreros</a></li>
+                    <li><a class="dropdown-item" href="/prenda/tipo/bolsas">Bolsas</a></li>
+                    <li><a class="dropdown-item" href="/prenda/tipo/mandiles">Mandiles</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
+
+    
 
     {{-- <div class="container p-3">
         <h2>{{ \Auth::user()->name }} - {{ \Auth::user()->email }}</h2>

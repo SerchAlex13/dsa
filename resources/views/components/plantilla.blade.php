@@ -41,6 +41,11 @@
                         <li class="nav-item p-2">
                             <a class="nav-link" href="/prenda">Productos</a>
                         </li>
+                        @can('isAdmin', App\Models\Prenda::class)
+                        <li class="nav-item p-2">
+                            <a class="nav-link" href="/pedidos">Pedidos</a>
+                        </li>
+                        @endcan
                         <li class="nav-item p-2 d-flex flex-fill">
                             <form class="d-flex" role="search">
                                 <div class="input-group mb-2">

@@ -32,6 +32,11 @@
                         </li>
                         @can('isAdmin', App\Models\Prenda::class)
                         <li class="nav-item mb-3">
+                            <a class="nav-link" href="/pedidos">Pedidos</a>
+                        </li>
+                        @endcan
+                        @can('isAdmin', App\Models\Prenda::class)
+                        <li class="nav-item mb-3">
                             <a class="nav-link" href="/user">Administrar usuarios</a>
                         </li>
                         @endcan
@@ -88,7 +93,7 @@
 
                     <div class="col">
                         <div class="card w-100 shadow-lg bg-body rounded">
-                            <img src="{{ \Storage::url('public/img/playera_diseno.jpg') }}" class="card-img-top" alt="playera_diseno">
+                            <img src="{{ \Storage::url('public/img/short_blue2.jpg') }}" class="card-img-top" alt="short_blue">
                             <div class="card-body">
                                 <a href="/prenda/tipo/shorts" class="nav-link link-dark stretched-link"><h5 class="card-title">Shorts</h5></a>
                             </div>

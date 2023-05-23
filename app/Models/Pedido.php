@@ -9,4 +9,9 @@ class Pedido extends Model
 {
     use HasFactory;
     protected $fillable = ['user_id', 'domicilio', 'total'];
+
+    public function carritos()
+    {
+        return $this->hasMany(Carrito::class);
+    }
 }

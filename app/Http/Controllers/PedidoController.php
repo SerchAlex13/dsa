@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\Carrito;
 use Illuminate\Http\Request;
 use App\Mail\PedidoRealizado;
 use Illuminate\Support\Facades\DB;
@@ -19,8 +20,22 @@ class PedidoController extends Controller
     public function index()
     {
         $pedidos = Pedido::where('user_id', Auth::id())->get();
+        $carritos = Carrito::where('user_id', Auth::id())->get();
 
-        return view('pedidos/pedidoIndex', compact('pedidos'));
+        return view('pedidos/pedidoIndex', compact('pedidos', 'carritos'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function mostrarPedidos()
+    {
+        $pedidos = Pedido::get();
+        $carritos = Carrito::get();
+
+        return view('pedidos/pedidoIndex', compact('pedidos', 'carritos'));
     }
 
     /**
@@ -51,7 +66,11 @@ class PedidoController extends Controller
 
         $pedido = Pedido::create($request->all());
 
-        $deleted = DB::table('carritos')->where('user_id', Auth::id())->delete();
+        // $pedido->carritos()->attach($request->carritos_id);
+
+        $estados = DB::table('carritos')->where('estado', 'En el carrito')->update(['estado' => 'Pedido']);
+
+        // $deleted = DB::table('carritos')->where('user_id', Auth::id())->delete();
 
         Mail::to(Auth::user()->email)->send(new PedidoRealizado($pedido));
 

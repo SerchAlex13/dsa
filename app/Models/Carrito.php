@@ -20,4 +20,9 @@ class Carrito extends Model
     {
         return $this->belongsTo(Prenda::class);
     }
+
+    public function pedido()
+    {
+        return $this->belongsTo(Pedido::class);
+    }
 }

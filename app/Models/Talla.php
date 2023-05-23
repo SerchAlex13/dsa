@@ -13,6 +13,6 @@ class Talla extends Model
 
     public function prendas()
     {
-        return $this->belongsToMany(Prenda::class);
+        return $this->hasMany(Prenda::class);
     }
 }
