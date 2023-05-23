@@ -9,6 +9,8 @@
             <thead>
                 <tr>
                     <th>ID de pedido</th>
+                    <th>Cliente</th>
+                    <th>Correo del cliente</th>
                     <th>Domicilio</th>
                     <th>Total</th>
                     <th>Fecha</th>
@@ -20,6 +22,10 @@
                     <tr>
 
                         <td>{{ $pedido->id }}</td>
+
+                        <td>{{ $pedido->user->name }}</td>
+
+                        <td>{{ $pedido->user->email }}</td>
 
                         <td>{{ $pedido->domicilio }}</td>
 
@@ -55,10 +61,19 @@
                             </p>
                             
                             <h5 class="card-title">Subtotal: ${{ $carrito->total }}</h5>
-                                
+
                             <h5 class="card-title">Estado: {{ $carrito->estado }}</h5>
 
                             @can('isAdmin', App\Models\Prenda::class)
+                            <br>
+
+                            <h6 class="card-title">Cliente: {{ $carrito->user->name }}</h6>
+
+                            <h6 class="card-title">Correo: {{ $carrito->user->email }}</h6>
+                                
+                            
+
+                            
                             <div class="container p-3">
                                 <form action="/carrito/{{ $carrito->id }}" method="POST" class="">
                                     @csrf

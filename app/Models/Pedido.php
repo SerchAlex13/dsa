@@ -14,4 +14,9 @@ class Pedido extends Model
     {
         return $this->hasMany(Carrito::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
