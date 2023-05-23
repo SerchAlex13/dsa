@@ -31,8 +31,14 @@
                         <input type="text" class="form-control" name="codigo" id="codigo" value="{{ $prenda->codigo }}">
                     </div>
                     <div class="col-md-6">
-                        <label for="tipo" class="form-label">Tipo de prenda</label>
-                        <input type="text" class="form-control" name="tipo" id="tipo" value="{{ $prenda->tipo }}">
+                        <label class="form-label">Tipo de prenda</label>
+                        <select name="tipo" class="form-control selectpicker">
+                            <option value="Playera" {{ $prenda->tipo === 'Playera' ? 'selected' : '' }}>Playera</option>
+                            <option value="Short" {{ $prenda->tipo === 'Short' ? 'selected' : '' }}>Short</option>
+                            <option value="Bolsa" {{ $prenda->tipo === 'Bolsa' ? 'selected' : '' }}>Bolsa</option>
+                            <option value="Sombrero" {{ $prenda->tipo === 'Sombrero' ? 'selected' : '' }}>Sombrero</option>
+                            <option value="Mandil" {{ $prenda->tipo === 'Mandil' ? 'selected' : '' }}>Mandil</option>
+                        </select>
                     </div>
                     <div class="col-12">
                         <label for="descripcion" class="form-label">Descripción</label>
@@ -60,8 +66,13 @@
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label for="tela" class="form-label">Tela</label>
-                        <input type="text" class="form-control" name="tela" id="tela" value="{{ $prenda->tela }}">
+                        <label class="form-label">Tela</label>
+                        <select name="tela" class="form-control selectpicker">
+                            <option value="Algodón" {{ $prenda->tela === 'Algodón' ? 'selected' : '' }}>Algodón</option>
+                            <option value="Poliéster" {{ $prenda->tela === 'Ppliéster' ? 'selected' : '' }}>Poliéster</option>
+                            <option value="Licra" {{ $prenda->tela === 'Licra' ? 'selected' : '' }}>Licra</option>
+                            <option value="Nylon" {{ $prenda->tela === 'Nylon' ? 'selected' : '' }}>Nylon</option>
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label for="precio" class="form-label">Precio</label>

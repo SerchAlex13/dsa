@@ -46,14 +46,14 @@
                             <a class="nav-link" href="/pedidos">Pedidos</a>
                         </li>
                         @endcan
-                        <li class="nav-item p-2 d-flex flex-fill">
+                        {{-- <li class="nav-item p-2 d-flex flex-fill">
                             <form class="d-flex" role="search">
                                 <div class="input-group mb-2">
                                     <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" size="50">
                                     <button class="btn btn-info" type="submit"><i class="bi bi-search"></i></button>
                                 </div>
                             </form>
-                        </li>
+                        </li> --}}
                         <li class="nav-item dropdown p-2">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 {{ \Auth::user() ? \Auth::user()->name : 'Mi cuenta' }}
@@ -65,7 +65,7 @@
                                 
                                 @endcan
                                 @can('isLoged', App\Models\Prenda::class)
-                                <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
+                                <li><a class="dropdown-item" href="/user/profile">Perfil</a></li>
                                 <li><a class="dropdown-item" href="/pedido">Historial de pedidos</a></li>
                                 @endcan
                                 @can('isAdmin', App\Models\Prenda::class)
@@ -128,6 +128,11 @@
                     <div class="col-lg-3 px-5">
                         <h4 class="mb-4">Navega</h4>
                         <a class="nav-link link-primary" href="/prenda">Productos</a>
+                        <a class="nav-link link-primary" href="/prenda/tipo/playeras">Playeras</a>
+                        <a class="nav-link link-primary" href="/prenda/tipo/shorts">Shorts</a>
+                        <a class="nav-link link-primary" href="/prenda/tipo/sombreros">Sombreros</a>
+                        <a class="nav-link link-primary" href="/prenda/tipo/bolsas">Bolsas</a>
+                        <a class="nav-link link-primary" href="/prenda/tipo/mandiles">Mandiles</a>
                     </div>
                     <div class="col-lg-4 px-5">
                         <h4 class="mb-4">Contáctanos</h4>
