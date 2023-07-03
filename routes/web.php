@@ -9,6 +9,8 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PrendaController;
 use App\Http\Controllers\CarritoController;
 
+use App\Http\Livewire\ShowPrendas;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +25,12 @@ use App\Http\Controllers\CarritoController;
 Route::get('/', function () {
     return view('index');
 });
+
+// Route::get('/dashboard-prueba', function () {
+//     return view('dashboard_prueba');
+// });
+
+Route::get('/dashboard-prueba', ShowPrendas::class)->name('dashboard-prueba');
 
 Route::get('/index', function () {
     return view('index');
