@@ -26,6 +26,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/landing', function () {
+    return view('landing');
+});
+
 // Route::get('/dashboard-prueba', function () {
 //     return view('dashboard_prueba');
 // });
