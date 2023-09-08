@@ -2,11 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
+.hamburger {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
+}
+
+.hamburger-top,
+.hamburger-middle,
+.hamburger-bottom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background: #000;
+    transform: rotate(0);
+    transition: all 0.5s;
+}
+
+.hamburger-middle {
+    transform: translateY(7px);
+}
+
+.hamburger-bottom {
+    transform: translateY(14px);
+}
+
+.open {
+    transform: rotate(90deg);
+    transform: translateY(0px);
+}
+
+.open .hamburger-top {
+    transform: rotate(45deg) translateY(6px) translate(6px);
+}
+
+.open .hamburger-middle {
+    display: none;
+}
+
+.open .hamburger-bottom {
+    transform: rotate(-45deg) translateY(6px) translate(-6px);
+}
+
 @layer components{
     .wrapper{
         @apply w-[90%] mx-auto overflow-hidden max-w-screen-xl;
     }
+
     .button{
-        @apply bg-bright-red text-vary-light-gray block w-max py-4 px-12 rounded-full;
+        @apply bg-bright-red text-very-light-gray block w-max py-4 px-12 rounded-full hover:bg-bright-red-light;
+    }
+
+    .footer-area{
+        grid-template-areas:
+        "form"
+        "navigation"
+        "social-media"
+        "logo"
+        "copyright";
+    }
+
+    .footer-area-lg{
+        grid-template-areas:
+        "logo           navigation  form"
+        "social-media   navigation  copyright"
     }
 }
