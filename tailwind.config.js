@@ -26,6 +26,12 @@ module.exports = {
                 "very-dark-blue": "hsl(233, 12%, 13%)",
                 "very-pale-red": "hsl(13, 100%, 96%)",
                 "very-light-gray": "hsl(0, 0%, 98%)",
+                "cyan-dsa-dark": "hsl(188, 86%, 35%)",
+                "cyan-dsa": "hsl(188, 86%, 55%)",
+                "cyan-dsa-light": "hsl(188, 86%, 65%)",
+                "marine-dsa": "hsl(240, 91%, 18%)",
+                "marine-dsa-light": "hsl(240, 91%, 25%)",
+                "very-marine-dsa-light": "hsl(240, 91%, 60%)",
             },
             backgroundImage: {
                 "close-menu": "url('../images/icon-close.svg')",

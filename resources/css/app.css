@@ -50,11 +50,11 @@
 
 @layer components{
     .wrapper{
-        @apply w-[90%] mx-auto overflow-hidden max-w-screen-xl;
+        @apply w-[90%] mx-auto overflow-hidden;
     }
 
     .button{
-        @apply bg-bright-red text-very-light-gray block w-max py-4 px-12 rounded-full hover:bg-bright-red-light;
+        @apply bg-gradient-to-r from-cyan-dsa to-very-marine-dsa-light mx-auto shadow-xl shadow-very-marine-dsa-light/30  text-white block w-max py-4 px-12 rounded-full hover:from-very-marine-dsa-light hover:to-marine-dsa;
     }
 
     .footer-area{
