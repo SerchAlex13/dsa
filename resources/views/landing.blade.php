@@ -18,29 +18,45 @@
 </head>
 <body class="font-vietnam">
 
-    <header class="h-36 md:h-4">
+    <header class="h-24">
         <nav class="wrapper bg-white z-20 h-24 px-5 flex items-center justify-between w-full fixed top-0 shadow-lg">
             <a href="/landing" class="w-1/3 max-w-[120px]">
                 <img src="{{ asset('images/dsa_logo.png') }}" class="w-full" alt="logo">
             </a>
 
-            <div class="">
-                <div id="menu" class="fixed hidden md:flex inset-0 z-40 bg-gradient-to-b from-white/70 to-black/70 transition-transform md:static md:bg-none md:translate-x-0">
-                    <ul class="absolute inset-x-0 top-24 p-12 bg-white w-[90%] mx-auto rounded-md h-max text-center grid gap-6 font-bold text-marine-dsa shadow-2xl md:w-max md:bg-transparent md:p-0 md:grid-flow-col md:static">
-                        <li>
+            <div>
+                <div class="flex inset-0 z-40">
+                    <ul class="static inset-x-0 mx-auto h-max text-center grid grid-flow-col gap-6 font-bold text-marine-dsa shadow-2xl w-max bg-transparent p-0">
+                        <li class="hidden md:flex">
                             <a href="#" class="hover:text-very-marine-dsa-light">Inicio</a>
                         </li>
-                        <li>
+                        <li class="hidden md:flex">
                             <a href="#" class="hover:text-very-marine-dsa-light">Productos</a>
                         </li>
-                        <li>
+                        <li class="hidden md:flex">
                             <a href="#" class="hover:text-very-marine-dsa-light">Conócenos</a>
                         </li>
-                        <li>
+                        <li class="hidden md:flex">
                             <a href="#" class="hover:text-very-marine-dsa-light">Contacto</a>
                         </li>
-                        <li>
-                            <a href="#" class="hover:text-very-marine-dsa-light"><i class="fa-solid fa-magnifying-glass fa-lg"></i></a>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <div id="menu" class="fixed hidden md:flex inset-0 z-40 bg-gradient-to-b from-white/70 to-black/70 transition-transform md:static md:bg-none md:translate-x-0">
+                    <ul class="absolute inset-x-0 top-24 p-12 bg-white w-[90%] mx-auto rounded-md h-max text-center grid gap-6 font-bold text-marine-dsa shadow-2xl md:w-max md:bg-transparent md:p-0 md:grid-flow-col md:static">
+                        <li class="md:hidden">
+                            <a href="#" class="hover:text-very-marine-dsa-light">Inicio</a>
+                        </li>
+                        <li class="md:hidden">
+                            <a href="#" class="hover:text-very-marine-dsa-light">Productos</a>
+                        </li>
+                        <li class="md:hidden">
+                            <a href="#" class="hover:text-very-marine-dsa-light">Conócenos</a>
+                        </li>
+                        <li class="md:hidden">
+                            <a href="#" class="hover:text-very-marine-dsa-light">Contacto</a>
                         </li>
                         <li>
                             <a href="#" class="hover:text-very-marine-dsa-light"><i class="fa-solid fa-circle-user fa-lg"></i></a>
@@ -59,9 +75,9 @@
             </button>
         </nav>
     </header>
-    
-    <section id="hero" class="wrapper grid gap-8 justify-items-center items-center pb-12 md:grid-cols-2 md:py-24">
-        <img src="{{ asset('images/bg-beach6.png') }}" class="w-[90%] shadow-2xl max-w-lg rounded-3xl md:mt-10 md:order-1" alt="ilustración">
+        
+    <section id="hero" class="landingpage wrapper w-full grid gap-8 justify-items-center items-center px-12 pb-12 md:py-24">
+        {{-- <img src="{{ asset('images/bg-beach6.png') }}" class="w-[90%] shadow-2xl max-w-lg rounded-3xl md:order-1" alt="ilustración"> --}}
 
         <article class="text-center space-y-6 md:text-left md:space-y-8 md:mt-10">
             
@@ -76,6 +92,7 @@
             <a href="#" class="button md:mx-0">Ver productos</a>
         </article>
     </section>
+    
     
 
     <figure class="absolute inset-0 overflow-hidden pointer-events-none">

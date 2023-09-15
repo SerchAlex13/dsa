@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.landingpage {
+    height: 550px;
+    background-image: url('../img/bg-beach6.png');
+    background-size: cover;
+}
+
 .hamburger {
     cursor: pointer;
     width: 24px;
